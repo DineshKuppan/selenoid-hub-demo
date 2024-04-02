@@ -1,0 +1,30 @@
+#Selenoid Docker and load Browser Configuration from same directory 'browsers.json' file
+version: '3'
+
+services:
+  selenoid:
+    container_name: selenoid
+    image: "aerokube/selenoid"
+    networks:
+      - selenoid-net
+    ports:
+      - "4444:4444"
+    volumes:
+      - "$PWD:/etc/selenoid/" # assumed current dir contains browsers.json
+      - "/var/run/docker.sock:/var/run/docker.sock"
+  selenoid-ui:
+    container_name: selenoid-ui
+    image: "aerokube/selenoid-ui"
+    networks:
+      - selenoid-net
+    links:
+      - selenoid
+    ports:
+      - "9090:8080"
+    command: ["--selenoid-uri", "http://selenoid:4444"]
+
+
+networks:
+  selenoid-net:
+    name: selenoid-net
+    driver: bridge
