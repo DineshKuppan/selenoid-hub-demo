@@ -1,0 +1,31 @@
+{
+  "chrome": {
+    "default": "latest",
+    "versions": {
+      "119.0": {
+        "image": "selenoid/vnc:chrome_119.0",
+        "port": "4444",
+        "path": "/",
+        "tmpfs": {
+          "/tmp": "size=128m"
+        }
+      },
+      "120.0": {
+        "image": "selenoid/vnc:chrome_120.0",
+        "port": "4444",
+        "path": "/",
+        "tmpfs": {
+          "/tmp": "size=128m"
+        }
+      },
+      "latest": {
+        "image": "selenoid/vnc:chrome_120.0",
+        "port": "4444",
+        "path": "/",
+        "tmpfs": {
+          "/tmp": "size=128m"
+        }
+      }
+    }
+  }
+}
